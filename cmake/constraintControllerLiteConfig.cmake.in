@@ -1,0 +1,35 @@
+#
+# Author(s): Henry Phalen, based on previous work by Paul Wilkening and others.
+# Created on: 2022-10-05
+#
+# (C) Copyright 2013-2022 Johns Hopkins University (JHU), All Rights Reserved.
+#
+
+set (constraintControllerLite_VERSION_MAJOR "@constraintControllerLite_VERSION_MAJOR@")
+set (constraintControllerLite_VERSION_MINOR "@constraintControllerLite_VERSION_MINOR@")
+set (constraintControllerLite_VERSION_PATCH "@constraintControllerLite_VERSION_PATCH@")
+set (constraintControllerLite_VERSION "@constraintControllerLite_VERSION@")
+
+# figure out if this file is where it was configured (build tree) or
+# not (installed tree)
+set (constraintControllerLite_CMAKE_CONFIG_FILE "@constraintControllerLite_CMAKE_CONFIG_FILE@")
+get_filename_component (THIS_FILE_PATH
+                        ${CMAKE_CURRENT_LIST_FILE}
+                        REALPATH)
+
+if ("${constraintControllerLite_CMAKE_CONFIG_FILE}" STREQUAL "${THIS_FILE_PATH}")
+  # we're using the build directories
+  set (constraintControllerLite_INCLUDE_DIR "@constraintControllerLite_INCLUDE_DIR@")
+  set (constraintControllerLite_LIBRARY_DIR "@constraintControllerLite_LIBRARY_DIR@")
+else ()
+  # try to find the install dir, we know the install is using
+  # share/constraintControllerLite so we can go ../..
+  set (RELATIVE_INSTALL_DIR "${THIS_FILE_PATH}/../..")
+  get_filename_component (ABSOLUTE_INSTALL_DIR "${RELATIVE_INSTALL_DIR}" ABSOLUTE)
+  # set directories using the install dir
+  set (constraintControllerLite_INCLUDE_DIR "${ABSOLUTE_INSTALL_DIR}/include")
+  set (constraintControllerLite_LIBRARY_DIR "${ABSOLUTE_INSTALL_DIR}/lib")
+endif ()
+
+set (constraintControllerLite_LIBRARIES   "@constraintControllerLite_LIBRARIES@")
+

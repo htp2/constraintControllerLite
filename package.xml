@@ -1,0 +1,22 @@
+<package>
+  <name>constraint_controller_lite</name>
+  <version>1.1.0</version>
+  <description>
+  constraintControllerLite
+  </description>
+  <maintainer email="henry.phalen@jhu.edu">Henry Phalen</maintainer>
+  <license>cisst</license>
+  <url>https://git.lcsr.jhu.edu/bigss/bigssroboticsystem</url>
+
+  <build_depend>cisst_netlib</build_depend>
+  <build_depend>cisst</build_depend>
+  <build_depend>saw_constraint_controller</build_depend>
+  <run_depend>cisst_netlib</run_depend>
+  <run_depend>cisst</run_depend>
+  <run_depend>saw_constraint_controller</run_depend>
+
+  <export>
+    <build_type>catkin</build_type>
+  </export>
+
+</package>
