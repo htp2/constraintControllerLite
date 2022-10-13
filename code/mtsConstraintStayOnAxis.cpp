@@ -110,30 +110,14 @@ void mtsConstraintStayOnAxis::FillInTableauRefs(const CONTROLLERMODE mode, const
     ObjectiveVectorRef.Assign( importance_gain * skew_ax * vctDoubleVec(current_pos - point_on_desired_axis));
 }
 
-void mtsConstraintStayOnAxis::PrepareDataForBridging(mtsInterfaceProvided* provided, std::map<std::string, std::type_index>& bridge_map)
+void mtsConstraintStayOnAxis::PrepareDataForBridging(mtsInterfaceProvided* provided)
 {
-    std::string cmd_name;
     /* TEMPLATE: (Make sure there is a matching command in the bridge (e.g. in ros/mts_ros_crtk_ccl_bridge.cpp))
-    cmd_name = {_end_of_topic_name};
     provided->AddCommandWrite(&{function_to_bridge}, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid({datatype})));
     */
 
-    cmd_name = "_active";
-    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_active, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid(bool)));
-
-    cmd_name = "_importance_gain";
-    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_importance_gain, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid(double)));
-
-    cmd_name = "_desired_axis";
-    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_desired_axis, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid(vct3)));
-
-    cmd_name = "_point_on_desired_axis";
-    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_point_on_desired_axis, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid(vct3)));
-
-
+    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_active, this, Name + "_active");
+    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_importance_gain, this, Name + "_importance_gain");
+    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_desired_axis, this, Name + "_desired_axis");
+    provided->AddCommandWrite(&mtsConstraintStayOnAxis::set_point_on_desired_axis, this, Name + "_point_on_desired_axis");
 }

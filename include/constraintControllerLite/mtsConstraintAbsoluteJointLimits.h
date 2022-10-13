@@ -25,7 +25,7 @@ public:
     mtsConstraintAbsoluteJointLimits(const Json::Value &constraint_config, const kinematics_map kins_map);
     ~mtsConstraintAbsoluteJointLimits(){};
     void FillInTableauRefs(const CONTROLLERMODE mode, const double TickTime);
-    void PrepareDataForBridging(mtsInterfaceProvided* provided, std::map<std::string, std::type_index>& bridge_map);
+    void PrepareDataForBridging(mtsInterfaceProvided* provided);
 
     void set_active(const bool &active) // needs to be const ref for provided interface
     {

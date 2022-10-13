@@ -30,10 +30,8 @@ class mts_ros_crtk_ccl_bridge: public mts_ros_crtk_bridge_provided
 public:
     inline mts_ros_crtk_ccl_bridge(const std::string & _component_name,
                                    ros::NodeHandle * _node_handle,
-                                   std::map<std::string, std::type_index> bridge_map,
                                    const double _period_in_seconds = 5.0 * cmn_ms):
-        mts_ros_crtk_bridge_provided(_component_name, _node_handle, _period_in_seconds),
-        bridge_map(bridge_map)
+        mts_ros_crtk_bridge_provided(_component_name, _node_handle, _period_in_seconds)
     {}
     
     std::map<std::string, std::type_index> bridge_map;

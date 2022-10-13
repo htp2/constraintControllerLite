@@ -102,21 +102,12 @@ void mtsConstraintFollowPositionTraj::FillInTableauRefs(const CONTROLLERMODE mod
     }
 }
 
-void mtsConstraintFollowPositionTraj::PrepareDataForBridging(mtsInterfaceProvided* provided, std::map<std::string, std::type_index>& bridge_map)
+void mtsConstraintFollowPositionTraj::PrepareDataForBridging(mtsInterfaceProvided* provided)
 {
-    std::string cmd_name;
     /* TEMPLATE: (Make sure there is a matching command in the bridge (e.g. in ros/mts_ros_crtk_ccl_bridge.cpp))
-    cmd_name = {_end_of_topic_name};
     provided->AddCommandWrite(&{function_to_bridge}, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid({datatype})));
     */
-
-    cmd_name = "_active";
-    provided->AddCommandWrite(&mtsConstraintFollowPositionTraj::set_active, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid(bool)));
-
-    cmd_name = "_goal_linear_velocity";
-    provided->AddCommandWrite(&mtsConstraintFollowPositionTraj::set_goal_linear_velocity, this, Name+cmd_name);
-    bridge_map.emplace(Name+cmd_name, std::type_index(typeid(double)));
+    provided->AddCommandWrite(&mtsConstraintFollowPositionTraj::set_active, this, Name + "_active");
+    provided->AddCommandWrite(&mtsConstraintFollowPositionTraj::set_goal_linear_velocity, this, Name + "_goal_linear_velocity");
 
 }

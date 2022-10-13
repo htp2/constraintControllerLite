@@ -104,7 +104,7 @@ constraintControllerLite::constraintControllerLite(int num_joints, const std::st
         
         // Let the constraint define what's needed for bridging (e.g. cisst-ros bridge), this is to allow easier isolation of implementation-specific items
         if(create_provided_interface){
-            constraint->PrepareDataForBridging(provided, bridge_map);
+            constraint->PrepareDataForBridging(provided);
         }
     }
 }

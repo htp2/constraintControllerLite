@@ -29,7 +29,7 @@ public:
     typedef std::map<std::string, prmKinematicsState *> kinematics_map;
     mtsConstraintBase(){};
     virtual ~mtsConstraintBase(){};
-    virtual void PrepareDataForBridging(mtsInterfaceProvided* provided, std::map<std::string, std::type_index>& bridge_map){};
+    virtual void PrepareDataForBridging(mtsInterfaceProvided* provided){};
 
     using mtsVFBase::Name; // clarify ambiguity as both have this member
 

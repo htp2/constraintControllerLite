@@ -35,7 +35,6 @@ public:
     nmrConstraintOptimizer Optimizer;
     mtsInterfaceProvided* provided;
     bool SolveConstrainedProblem(vctDoubleVec &dq);
-    std::map<std::string, std::type_index> bridge_map;
 
 private:
     mtsVFBase::CONTROLLERMODE ControllerMode = mtsVFBase::CONTROLLERMODE::JVEL; // We don't use this, but required by optimizer

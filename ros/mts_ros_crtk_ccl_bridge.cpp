@@ -72,31 +72,41 @@ void mts_ros_crtk_ccl_bridge::bridge(const std::string & _component_name,
 
     for(auto& command_name: _interface_provided->GetNamesOfCommandsWrite())
     {
-        if (bridge_map.at(command_name) == typeid(bool))
+        auto cmd_type_id_name = _interface_provided->GetCommandWriteArgumentServices(command_name)->TypeInfoPointer()->name();
+
+        if (cmd_type_id_name == typeid(mtsGenericObjectProxy<bool>).name())
         {
             m_subscribers_bridge->AddSubscriberToCommandWrite<bool, std_msgs::Bool>
                 (_required_interface_name, command_name, _clean_namespace + command_name);
         }
-        if (bridge_map.at(command_name) == typeid(double))
+        else if (cmd_type_id_name == typeid(mtsGenericObjectProxy<double>).name())
         {
             m_subscribers_bridge->AddSubscriberToCommandWrite<double, std_msgs::Float64>
                 (_required_interface_name, command_name, _clean_namespace + command_name);
         }
-        if (bridge_map.at(command_name) == typeid(vctDoubleVec))
+
+        else if ( cmd_type_id_name == typeid(mtsGenericObjectProxy<vctDoubleVec>).name() )
         {
             m_subscribers_bridge->AddSubscriberToCommandWrite<vctDoubleVec, std_msgs::Float64MultiArray>
                 (_required_interface_name, command_name, _clean_namespace + command_name);
         }
-        if (bridge_map.at(command_name) == typeid(vctRot3))
+        else if ( cmd_type_id_name == typeid(mtsGenericObjectProxy<vctRot3>).name() )
         {
             m_subscribers_bridge->AddSubscriberToCommandWrite<vctRot3, geometry_msgs::Quaternion>
                 (_required_interface_name, command_name, _clean_namespace + command_name);
         }
-        if (bridge_map.at(command_name) == typeid(vct3))
+        else if ( cmd_type_id_name == typeid(mtsGenericObjectProxy<vct3>).name() )
         {
              m_subscribers_bridge->AddSubscriberToCommandWrite<vct3, geometry_msgs::Vector3>
                 (_required_interface_name, command_name, _clean_namespace + command_name);
         }
+        else
+        {
+            std::cout << "No bridge found for command: " << command_name << " from provided interface: " << _interface_provided;
+            std::cout  << "CommandWrite argument has type name: " << cmd_type_id_name;
+            std::cout << " and class name: " <<  _interface_provided->GetCommandWriteArgumentServices(command_name)->GetName() << std::endl;
+        }
+
     }
 
     // connections
