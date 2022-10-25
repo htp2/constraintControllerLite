@@ -1,3 +1,5 @@
+### This code has been incorporated into the opensource JHU sawConstraintController (https://github.com/jhu-saw/sawConstraintController) and will now be maintained there
+
 Author: Henry Phalen
 
 A re-implementation of the sawConstraintController that aims to expose the most useful functionality, while simplifying the creation and use of
